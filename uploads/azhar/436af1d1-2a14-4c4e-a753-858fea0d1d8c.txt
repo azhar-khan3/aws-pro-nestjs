@@ -1,0 +1,11 @@
+
+{path:"/add", loadChildren : "/data/data.module#DtaaModuke"}
+
+loadChildren: ()=> import("/data/datamodule").then (m => m . DataModuule)
+
+tranaction
+queue
+trigger
+event driven
+lifrcycle event 
+pipes in nestjs
