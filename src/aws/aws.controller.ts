@@ -6,13 +6,15 @@ import { ApiAndSecretKeyGuard } from './aws.guard';
 export class AwsController {
 
     constructor(private readonly service: AwsService) { }
-
+     
+    // Get an object
     @UseGuards(ApiAndSecretKeyGuard)
     @Get(':bucket/object/:key')
     getObject(@Param('bucket') bucket: string, @Param('key') key: string) {
         return this.service.getObject(bucket, key);
     }
 
+    // Put an object
     @UseGuards(ApiAndSecretKeyGuard)
     @Post(':bucket/object')
     @UseInterceptors(FileInterceptor('file'))
@@ -20,18 +22,21 @@ export class AwsController {
         return this.service.putObject(bucket, file);
     }
 
+    // Delete an object
     @UseGuards(ApiAndSecretKeyGuard)
     @Delete(':bucket/object/:key')
     deleteObject(@Param('bucket') bucket: string, @Param('key') key: string) {
         return this.service.deleteObject(bucket, key);
     }
 
+    // List of objects
     @UseGuards(ApiAndSecretKeyGuard)
     @Get(':bucket/objects')
     listObjects(@Param('bucket') bucket: string) {
         return this.service.listObjects(bucket);
     }
 
+    // List of buckets
     @UseGuards(ApiAndSecretKeyGuard)
     @Get(':buckets')
     listBuckets() {
